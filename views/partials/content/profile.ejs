@@ -1,0 +1,30 @@
+
+<!-- User Profile form -->
+<div role="tabpanel" class="tab-pane active in" id="home">
+        <form id="user"action="/api/updateperson" method="POST"   >
+            <input type="hidden" id="id" value="<%= PersonData._id %>">
+            <label>Username:</label><br>
+            <input type="text" value="<%= PersonData.Username %>" class="input-xlarge" id="username" name="username"></br>
+            <label>Email</label><br>
+            <input type="text" value="<%= PersonData.email %>" class="input-xlarge" name="email"> </br>
+            <label>Postal Code</label><br>
+            <input type="text" value="<%= PersonData.postalcode %>" class="input-xlarge" name="postalcode"> </br>
+            <label>Password:</label>
+            <a href="/MyProfile/password">Change Password</a></br>
+            <input type="submit" name="submit" value="Update!">
+            <div>
+            </div><br>
+
+        </form>
+
+
+        <label>New Profile Picture:</label><br>
+        <!-- profile picture upload -->
+        <form
+                action='/api/updatepic/<%= PersonData._id %> '
+                method='post'
+                enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required/>
+            <input type='submit' value='Upload!' onclick="window.location.reload(true)"/>
+        </form>
+    </div>

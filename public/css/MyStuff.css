@@ -1,0 +1,109 @@
+/*"overflow" added (html, .savedSpots)*/
+
+html{
+    height:100%;
+    overflow: auto;
+}
+
+body{
+    background: #fff url(https://source.unsplash.com/Mxvew_CaxJI) repeat bottom right ;
+    background-position: center;
+    background-size: cover;
+}
+
+footer{
+    position: fixed;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+li{
+    list-style: none;
+}
+
+.btn-lg{
+    font-family: 'Raleway', sans-serif;
+    color:white;
+    background-color: transparent;
+    border-color: white;
+}
+
+
+/* --------------------------------------------------------- */
+
+.col{
+    color: white;
+    text-align: center;
+    border: 5px solid white;
+    margin-left: 30px;
+    background-color: #BEA586;
+}
+
+#savedSpots{
+    height: 550px;
+    overflow-y: auto;
+}
+
+#floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+/*********/
+.list-group{
+    max-height: 500px;
+    overflow: auto;
+}
+a.list-group-item {
+    height:150px;
+    min-height:200px;
+    overflow:auto;
+    font-family: 'Raleway', sans-serif;
+}
+a.list-group-item.active small {
+    color:#fff;
+}
+.stars {
+    margin:20px auto 1px;
+}
+
+.help-tab a:link {
+    border: 1px solid #c8c8c8;
+    border-top-style: none;
+    border-radius: 10px 10px 10px 10px;
+    background: rgba(255,255,255,0.75);
+    color: rgba(60,60,60,0.75);
+    font-weight: bold;
+    text-decoration: none;
+    padding: 6px 22px 11px;
+    display: inline-block;
+}
+
+/*------------------LASTEST UPDATES----------------------------*/
+
+.well{
+    margin-left: 10em;
+    margin-top: 1em;
+    margin-bottom: 30px;
+    margin-right: 25px;
+    background-color: #B2906F;
+    height: 600px;
+    padding-top: 2px;
+}
+
+#myPlaces{
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    padding-bottom: 5px;
+}

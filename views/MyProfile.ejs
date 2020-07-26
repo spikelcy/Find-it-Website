@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include partials/templates/head.ejs%>
+
+    <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
+    <link rel="stylesheet" href="/css/MyProfileStyle.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <title>My Profile</title>
+
+</head>
+<body>
+<%include partials/templates/navbar_profile.ejs%>
+<section id="sec1">
+
+    <div class="container fluid ">
+        <div class="row">
+            <div class="col-sm-4 col-md-4 user-details">
+                <div class="user-image">
+                    <img src="<%= PersonData.img%>" class="img-circle">
+                </div>
+                <div class="user-info-block">
+
+                    <div class="user-heading">
+                        <h3><%= PersonData.firstname %> <%= PersonData.lastname %></h3>
+                        <a href="/logout"  value="Logout" name="button" class="btn btn-default btn-lg logout-button">
+                            Log out</a>
+                        <span class="help-block"><%= PersonData.address%></span>
+                    </div>
+                    <div class="card">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active" ><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tags"></i>  <span>Profile</span></a></li>
+                            <li role="presentation"><a href="#follows" aria-controls="follows" role="tab" data-toggle="tab"><i class="fa fa-users"></i>  <span>Follows</span></a></li>
+                            <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab"><i class="fa fa-list"></i>  <span>Reviews</span></a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <!-- Check to display password content or profile -->
+                            <%if(pageId==='password'){%>
+                            <%include partials/content/password.ejs%>
+                            <%}else{%>
+                            <%include partials/content/profile.ejs%>
+                            <%}%>
+
+
+                            <!-- Contact list -->
+                            <div role="tabpanel" class="tab-pane" id="follows">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading c-list">
+                                                <div class="col-xs-12">
+                                                    <div class="input-group c-search">
+                                                        <input type="text" class="form-control" id="contact-list-search" placeholder="Search Follows List">
+                                                        <span class="input-group-btn">
+                             <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search text-muted"></span></button>
+                         </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Follows list, uses foreach loop and a api script to get info.
+                                             -->
+                                            <ul class="list-group" id="contact-list">
+                                                <% PersonData.follows.forEach(function(follow) { %>
+                                                <li class="list-group-item" id="<%= follow %>">
+                                                    <div class="col-xs-12 col-sm-3">
+                                                        <img id="person_pic<%= follow %>" src="https://thumb7.shutterstock.com/display_pic_with_logo/4473031/518740741/stock-vector-default-avatar-profile-icon-grey-photo-placeholder-518740741.jpg"  class="img-responsive img-circle" />
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-9">
+                                                        <a href="/OtherProfile?pid=<%= follow %>"  class="name" style="color:black;" id="contact_name<%= follow %>">
+                                                            <script>
+                                                              $.getJSON( "/api/person/<%= follow %>", function(data) {
+                                                                document.getElementById("contact_name<%= follow %>").innerHTML = data.Username;
+                                                                document.getElementById("person_pic<%= follow %>").src = data.img;
+                                                              });
+                                                            </script>
+                                                        </a><br/>
+                                                        <button type="button" name="delete" class="btn btn-default" value="<%= follow %>"><i class="fa fa-user" aria-hidden="true"></i> Unfollow</button>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </li>
+                                                <% }); %>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Review -->
+                            <div role="tabpanel" class="tab-pane" id="reviews">
+                                <ul class="list-group" id="contact-list">
+                                    <% PersonData.comments.forEach(function(comment) { %>
+                                    <li class="list-group-item" id="<%= comment %>">
+                                        <div class="col-xs-12 col-sm-3">
+                                            <img id="pic<%= comment %>" src="" alt="place" class="img-responsive .img-rounded" />
+                                        </div>
+                                        <div class="col-xs-12 col-sm-9">
+                                            <!-- api script to get comment info -->
+                                            <script>
+                                              $.getJSON( "/api/comment/<%= comment %>", function(data) {
+                                                document.getElementById("place<%= comment %>").innerHTML = data.address;
+                                                document.getElementById("textarea<%= comment %>").innerHTML = data.review_text;
+                                                $.getJSON( "/api/findplace/"+data.place_id, function(aplace) {
+                                                    document.getElementById("pic<%= comment %>").setAttribute('src',aplace.img);
+                                                });
+                                                $('#place<%= comment %>').attr('href','/Place?pid='+data.place_id);
+                                                if (data.rating == 1){
+                                                  $('#uprate<%= comment %>').addClass('active');
+                                                }else if(data.rating == 2){
+                                                  $('#downrate<%= comment %>').addClass('active');
+                                                }
+                                              });
+                                            </script>
+
+                                            <a href="" class="name" style="color:black;" id="place<%= comment %>"></a><br/>
+                                            <button type="button" name="like" id="uprate<%= comment %>" class="btn btn-xs" value="<%= comment %>" onClick="SubmitRatingVote(this.id,this.value)"> <i class="fa fa-arrow-up" aria-hidden="true"></i> </button><br/>
+                                            <button type="button" name="dislike" id="downrate<%= comment %>" class="btn btn-xs" value="<%= comment %>" onClick="SubmitRatingVote(this.id,this.value)"> <i class="fa fa-arrow-down" aria-hidden="true"></i> </button>
+                                            <input type="hidden" value="<%=comment %>" id="comment_id">
+                                            <textarea value="reviewid" rows="2" class="input-large" name="review_text"
+                                                      id ="textarea<%= comment %>">
+                                  </textarea>
+                                            <button type="button" name="updateplace" class="btn btn-default" value="<%= comment %>" onClick="Updatereview(this.value)"> Update </button>
+                                            <button type="button" name="deleteplace" class="btn btn-default" value="<%= comment %>"> Delete </button>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                    <% }); %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--    <footer class="footer">
+      <div class="container-fluid" id="foot">
+        <a href="contact.html" id="contact">Contact Us!</a>
+      </div>
+    </footer>
+  -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<%include partials/templates/defaultjs.ejs%>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script type="text/javascript" src="/javascript/MyProfile.js"></script>
+
+</body>
+</html>

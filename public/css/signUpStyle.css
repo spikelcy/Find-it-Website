@@ -1,0 +1,213 @@
+html{
+    height:100%;
+}
+@font-face{
+    font-family: 'KaushanScript-Regular';
+    src:url('/fonts/KaushanScript-Regular.otf') format("opentype");
+
+}
+
+
+/** modal css **/
+
+.modal-body{
+    background-color: #FCFBE3;
+    font-family:'Raleway', sans-serif;
+
+}
+.modal-header{
+    background-color: #8E5B3E;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    color:white;
+}
+
+.modal-footer{
+    background-color: #FCFBE3;
+
+}
+.close {
+    color: #A2825C;
+    color:white;
+}
+
+/****/
+
+body{
+    /*background-color: #fcfbe3;
+    background-position: center;
+    background-size: cover;*/
+
+    background-image: url("images/background.jpg");
+    background-color: rgba(252, 251, 227, 0.9);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+
+
+
+}
+
+footer{
+    position: fixed;
+    bottom:0;
+    left:0;
+    right:0;
+}
+section{
+    padding-top: none;
+    font-family: sans-serif;
+    text-align: center;
+    color: black;
+    /*text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);*/
+}
+
+h1{
+    font-family:'KaushanScript-Regular','Indie Flower', cursive;
+    text-align: center;
+    text-shadow:white;
+}
+
+section{
+    background-color: rgba(252, 251, 227, 0.9);
+    align: "center";
+    margin: auto;
+    width: 500px;
+}
+
+table{
+
+    background-position: center;
+    background-size: cover;*/
+
+filter : alpha(opacity=50);
+
+    padding: 2px;
+    align: "center";
+    margin: auto;
+    border-color: transparent;
+}
+
+th, td{
+    background: rgba(100,100,100,0);
+    text-align: left;
+    border-color: transparent;
+    padding: 2px;
+}
+
+select{
+    width:175px;
+    color: #777777;
+}
+
+.form-group{
+    padding-left: 20px;
+    width:100%;
+}
+
+.true,.false{
+    width:174px;
+}
+
+.false{
+    outline: none;
+    border: 2px solid #ff7088;
+    box-shadow: 0 0 7px #ff7088;
+}
+
+.td-center{
+    text-align: center;
+
+}
+
+.brand{
+    font-family: 'Kaushan Script', cursive;
+}
+
+.btn-lg{
+    font-family: 'Indie Flower', cursive;
+    color:white;
+    background-color: transparent;
+    border-color: white;
+}
+
+
+@media all and (max-width:768px){
+    section{
+        width: 65%;
+    }
+
+}
+
+@media all and (max-width: 692px){
+
+    section{
+        width: 450px;
+    }
+
+}
+
+@media all and (max-width: 500px){
+
+    section{
+        width: 90%;
+    }
+
+}
+
+
+
+@media all and (max-width: 400px){
+    label{
+        font-size: 0;
+        color: transparent;
+    }
+
+    .fileLabel{
+        font-size: 1em;
+        color: #FCFBE3;
+    }
+
+    table, th, td{
+        text-align: center;
+    }
+
+    section{
+        width: 90%;
+    }
+
+
+}
+
+@media all and (max-width: 270px){
+
+    img{
+        width: 90%;
+    }
+
+}
+
+.signUpSheet{
+
+    opacity : 0.8;
+}
+
+.inputFile{
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.fileLabel{
+    padding: 2px;
+    color: #FCFBE3;
+    background-color: #A2825C;
+    display: inline-block;
+}
+
+.fileLabel:focus,
+.fileLabel:hover{
+    background-color: #BEA586;
+    cursor: pointer;
+}

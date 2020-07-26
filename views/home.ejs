@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include partials/templates/head.ejs%>
+    <link rel="stylesheet" href="/css/HomeStyle.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<%if (LoggedIn == 0){%>
+<%include partials/templates/navbar.ejs%>
+<%}else{%>
+<%include partials/templates/navbar_profile.ejs%>
+<%}%>
+
+<div class="video-background">
+    <div class="video-foreground">
+        <iframe src="https://player.vimeo.com/video/49982094?autoplay=1&loop=1&color=ffffff&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div>
+</div>
+
+<section>
+    <a href="/MyStuff" type="button" name="button" class="btn btn-default btn-lg"><i class="fa fa-coffee" aria-hidden="true"></i> My Stuff</a>
+    <a href= "/Search" type="button" name="button" class="btn btn-default btn-lg"><i class="fa fa-search" aria-hidden="true"></i> Find Stuff</a>
+    <br>
+    <h3 style="text-align: center;text-decoration: underline"> About Us</h3>
+    <div class="row">
+        <h2>Kohii is a Student-Centered Web App, available 24/7 for searching latest & closest Melbourne hotspots.</h2>
+        <h2>All places are mapped & reviewed by local 'Masters' everyday.</h2>
+        <h2>Join our Community and get your Places updated!</h2>
+    </div>
+</section>
+
+<%include partials/templates/defaultjs.ejs%>
+
+</body>
+</html>

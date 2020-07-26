@@ -1,0 +1,226 @@
+html{
+    height:100%;
+}
+@font-face{
+    font-family: 'KaushanScript-Regular';
+    src:url('../fonts/KaushanScript-Regular.otf') format("opentype");
+
+}
+
+
+body{
+    background-image: url("images/background.jpg");
+    background-color: rgba(252, 251, 227, 0.9); /*in case the image doesn't display*/
+    background-position: center;
+    background-size: cover;
+    overflow: scroll;
+    background-attachment: fixed;
+    font-family: 'Raleway', sans-serif;
+}
+
+footer{
+    position: fixed;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+
+.sec1{
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.user-details {position: relative; padding: 0; height: 200px;
+    width: 100%;}
+.user-details .user-image {position: absolute;  z-index: 1;  height: 105px;
+    width: 100%; text-align: center;padding-right:150px;}
+.user-image img { clear: both; margin: auto; position: absolute; width:150px; height: 105px}
+
+.user-details .user-info-block {width: 100%; position: absolute; top: 55px; background: rgba(252, 251, 227, 0.9);
+    z-index: 0; padding-top: 35px;}
+.user-info-block .user-heading {width: 100%; text-align: center; margin: 10px 0 0;}
+
+/*** PANEL ***/
+
+
+.nav-tabs{
+    border-color: #BEA586;
+    text-align:center;
+    padding-top: 10px
+}
+.nav-tabs li{
+    width:20%;
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+    zoom:1; /* hasLayout ie7 trigger */
+    transform: scale(1);
+}
+.nav-tabs li >a{
+    color:black;
+}
+.nav-tabs li > a:hover, .nav-tabs li.active > a:focus
+,.nav-tabs li.active > a  {
+    background-color: #BEA586;
+    color:white;
+    border-color: transparent;
+}
+
+.tab-pane { padding: 15px ; }
+.tab-content{padding:20px}
+
+@media all and (max-width:724px){
+    .nav-tabs > li > a > span {display:none;}
+    .nav-tabs > li > a {padding: 5px 5px;}
+}
+
+span[name="catergory"] {
+    font-size: 2.5em;
+    font-weight: 700;
+    font-family: 'Amatic SC', cursive;
+}
+
+
+span[name="info"] {
+    font-size: 1.3em;
+    font-family: 'Raleway', sans-serif;
+}
+
+
+/** Reviews */
+
+.btn-xs.active{
+    background-color: #8E5B3E;
+}
+
+#ratingup{
+    pointer-events: none;
+}
+
+#ratingdown{
+    pointer-events: none;
+}
+.c-list {
+    padding: 0px;
+    min-height: 44px;
+
+}
+.list-group-item{
+    background-color: #BEA586;
+    border-color: black;
+    overflow: auto;
+}
+
+
+span[name="catergory"] {
+    font-size: 2.5em;
+    font-weight: 700;
+    font-family: 'Amatic SC', cursive;
+}
+
+
+span[name="review_text"] {
+    font-size: 1.5em;
+    font-family: 'Indie Flower', cursive;
+}
+
+.name {
+    font-size: 2.5em;
+    font-weight: 700;
+    font-family: 'Amatic SC', cursive;
+}
+
+.list-group{
+    overflow: auto;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+}
+
+
+/** nav bar fix **/
+.navbar-collapse { background:#C09F80; }
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 4; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #FCFBE3;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+.modal-body{
+
+    background-color: #FCFBE3;
+    font-family: 'Raleway', sans-serif;
+
+}
+
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/** modal css **/
+
+.modal-body{
+    background-color: #FCFBE3;
+    font-family: 'Raleway', sans-serif;
+
+}
+.modal-header{
+    background-color: #FCFBE3;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    color:white;
+}
+
+.modal-footer{
+    background-color: #FCFBE3;
+
+}
+.close {
+    color: #A2825C;
+    color:white;
+}
+
+/****/
+
+/** Save button **/
+
+#save.active{
+    background-color: #8E5B3E;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/templates/head.ejs %>
+	<link rel="stylesheet" href="css/signUpStyle.css">
+
+	<title>Sign Up</title>
+</head>
+<body>
+<% include partials/templates/navbar.ejs %>
+<section>
+	<h1>Sign Up</h1>
+	<form action="/api/newUser" onsubmit="return verifyForm()" method="POST" enctype="multipart/form-data">
+		<p>
+		<table>
+
+
+
+			<tr><td colspan="2" class="td-center" style="text-align: center;"><input type="file" name="file" id="file" class="inputFile" size="50"  accept="image/*" required onchange = "readURL(this);"/>
+					<label for="file" class="fileLabel">Add a picture!</label></td></tr>
+			<tr><td colspan="2" class="td-center" style="text-align: center;"><img class="img-circle" id="display-image" src="css/images/edited-logo-v3.jpg" width="180" height="180" alt = "Selected Image" /></td></tr>
+
+			<tr><td><label>Username*:</label></td>
+				<td><input type="text" onchange="return verifyUsername(this,[<%=UsernameData%>])" class="true" name="username" placeholder="username*" id="username" required /></td></tr>
+			<tr><td><label>Password*:</label></td>
+				<td><input type="password" class="true" name="password" placeholder="password*" id="password" required /></td></tr>
+			<tr><td><label>Confirm Password*:</label></td>
+				<td><input type="password" class="true" onchange="confirmPassword()" placeholder="confirm password*" id="password-confirm" required /></td></tr>
+			<tr><td><label>Email*:</label></td>
+				<td><input type="text" class="true" onchange="return checkInput(this)" name="email" placeholder="email@example.com*" id="email" required /></td></tr>
+			<tr><td><label>Postcode*:</label></td>
+				<td><input type="number" class="true" name="postcode" min="0" max="9999" id="postalcode" placeholder="Postcode*" class="postcode" required />
+
+			<tr><td><label>Course:</label></td>
+				<td><select id="course" class="true" name = "course" list="courses" placeholder="Enter course here" required />
+
+
+					<option value="">Select Course</option>
+					<option value="Science">Science</option>
+					<option value="Commerce">Commerce</option>
+					<option value="Environments">Environments</option>
+					<option value="Arts">Arts</option>
+
+			<tr><td colspan="2"></td></tr>
+			<tr><td colspan="2" class="td-center" ><input type="submit" value="Sign Up!"></td></tr>
+			<tr><td colspan="2" ></td></tr>
+			<tr><td colspan="2">* marks required fields.</td></tr>
+			<tr><td colspan="2">Details can be edited later in the 'My Profile' page.</td></tr>
+
+		</table>
+		</p>
+	</form>
+</section>
+
+
+<% include partials/templates/defaultjs.ejs %>
+<script src="javascript/form.js"></script>
+
+</body>
+</html>

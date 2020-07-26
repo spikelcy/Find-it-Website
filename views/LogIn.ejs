@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <%include partials/templates/head.ejs%>
+	  <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
+	  <link rel="stylesheet" href="css/signUpStyle.css">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	  <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+	  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+
+
+	  <title>Log In</title>
+
+  </head>
+  <body>
+	  <%include partials/templates/navbar.ejs%>
+
+
+	  <!--Sign Up form. I added the login stuff here cuz i didnt know how to work it lol-->
+	  <section>
+		  <h1>Log In</h1>
+		  <!--Login form-->
+		  <form role="form" class="form-horizontal">
+			  <div class="form-group">
+				  <label for="user" class="col-sm-2 control-label">
+					  Username</label>
+				  <div class="col-sm-10">
+					  <input type="text" class="form-control" id="id" placeholder="username" />
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label for="exampleInputPassword1" class="col-sm-2 control-label">
+					  Password</label>
+				  <div class="col-sm-10">
+					  <input type="password" class="form-control" id="pass" placeholder="Password" />
+				  </div>
+			  </div>
+			  <div class="row">
+				  <div class="col-sm-2">
+				  </div>
+				  <div class="col-sm-8">
+					  <button type="button" class="btn btn-primary btn-sm" onclick="SubmitLoginData()">
+						  Login</button><br/><br/>
+					  <a href="/SignUp">Don't have an account? Register here.</a>
+				  </div>
+			  </div>
+		  </form>
+	  </section>
+
+
+      <%include partials/templates/defaultjs.ejs%>
+	  <script type="text/javascript" src="/javascript/signUp.js"></script>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Bootstrap -->
+      <!-- Bootstrap -->
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <!-- Latest compiled and minified CSS -->
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <%include partials/templates/head.ejs%>
+
+    <link rel="stylesheet" href="/css/Search.css">
+  </head>
+  <body>
+  <% if (usercheck == 0){  %>
+  <%include partials/templates/navbar.ejs%>
+  <%}else{%>
+  <%  include partials/templates/navbar_profile.ejs%>
+  <%}%>
+
+      <section>
+    <!-- /.Search-bar -->
+
+          <br><br>
+
+          <div class="container">
+              <div class="row searchpart">
+
+                  <div id="custom-search-input">
+                      <form  method="get" action="/textsearch">
+                          <div id="newsearchform" class="input-group col-md-12">
+                              <input type="text" class="  search-query form-control" placeholder="Enter some text" name="searchcontent"/>
+                              <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="submit">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+      </section>
+    <br><br>
+
+    <div class="row tag">
+        <div class="col-md-3 text-center tag">
+            <a href="/tagsearch/Food" onmouseover="foodpic.width=180;foodpic.height=180" onmouseout="foodpic.height=140;foodpic.width=140">
+                <img class="img-circle" name="foodpic" src="https://img.tutpad.com/tut/0/43/19-burger-flat-icon700.jpg?size=%3C700x&dpr=2" width="140" height="140" >
+            </a>
+            <h2 class="tagtitle">FOOD</h2>
+            <p class="tagtext">Have a nice meal before back to study!</p>
+
+        </div>
+        <div class="col-md-3 text-center tag">
+            <a href="/tagsearch/School" onmouseover="studypic.width=180;studypic.height=180" onmouseout="studypic.height=140;studypic.width=140">
+                <img class="img-circle" name="studypic" src="http://www.theaccessproject.org.uk/assets/academic-excellence-icon-687ae91bae281d3c7e47b3b17e5afc20.png" width="140" height="140">
+            </a>
+            <h2 class="tagtitle">STUDY</h2>
+            <p class="tagtext">Go somewhere other than libraries!</p>
+
+        </div>
+        <div class="col-md-3 text-center tag">
+            <a href="/tagsearch/Entertainment" onmouseover="funpic.width=180;funpic.height=180" onmouseout="funpic.height=140;funpic.width=140">
+                <img class="img-circle" name="funpic" src="https://simpleclipart.com/image/thumbnail/08-b5-25/symbolic-coffee-cup-icon-Download-Royalty-free-Vector-File-EPS-1811.jpg" width="140" height="140">
+            </a>
+            <h2 class="tagtitle">HAVE FUN</h2>
+            <p class="tagtext">Have a little relax if getting tired!</p>
+
+        </div>
+        <div class="col-md-3 text-center tag">
+            <a href="/tagsearch/Groceries" onmouseover="grocerypic.width=180;grocerypic.height=180" onmouseout="grocerypic.height=140;grocerypic.width=140">
+                <img class="img-circle" name="grocerypic" src="https://previews.123rf.com/images/eatcute/eatcute1411/eatcute141111404/34103864-shopping-grocery-store-flat-icon-with-long-shadow-eps10-Stock-Photo.jpg" width="140" height="140">
+            </a>
+            <h2 class="tagtitle">GROCERY</h2>
+            <p class="tagtext">These places do have everything nice!</p>
+        </div>
+    </div><!-- /.row -->
+
+
+
+      <%include partials/templates/defaultjs.ejs%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="javascript/jquery.alphanum.js"></script>
+    <script type="text/javascript" src="javascript/search.js"></script>
+
+  </body>
+</html>

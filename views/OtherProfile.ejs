@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%include partials/templates/head.ejs%>
+        <link rel="stylesheet" href="/css/OtherProfile.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Indie+Flower" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+      <title><%= PersonData.Username %>'s Profile</title>
+  </head>
+  <body>
+  <%if (LoggedIn == 0){%>
+  <%include partials/templates/navbar.ejs%>
+  <%}else{%>
+  <%include partials/templates/navbar_profile.ejs%>
+  <%}%>
+<section id="sec1">
+  <div class="container">
+ <div class="row">
+   <div class="col-sm-4 col-md-4 user-details">
+            <div class="user-image">
+                <img src="<%= PersonData.img%>" class="img-circle">
+            </div>
+            <div class="user-info-block">
+                <div class="user-heading">
+                    <h3><%= PersonData.Username %></h3>
+                    <% if(LoggedIn == 1){%>
+                    <% if(Followed == 0){%>
+                    <button type="button" name="button" class="btn btn-default btn-lg" id="follow" value="<%= PersonData._id %>">
+                        </i> Follow</button>
+                    <%}else{%>
+                    <button type="button" name="button" class="btn btn-default btn-lg active" id="follow" value="<%= PersonData._id %>">
+                        </i> Followed</button>
+                    <%}%>
+                    <%}else{%>
+                    <button type="button" name="button" class="btn btn-default btn-lg" id="LogInFirst">
+                        </i> Follow</button>
+                    <%}%>
+                </div>
+                <!-- Nav tabs -->
+<div class="card">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active" ><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tags"></i>  <span>Profile</span></a></li>
+    <li role="presentation"><a href="#review" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list"></i>  <span>Review</span></a></li>
+      <li role="presentation"><a href="#save" aria-controls="save" role="tab" data-toggle="tab"><i class="fa fa-heart"></i>  <span>Saved Spots</span></a></li>  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+        <span name="catergory">Username:</span></br>
+        <span name="info"> <%= PersonData.Username %></span></br>
+        <span name="catergory">Area: </span> </br>
+        <span name="info"> <%= PersonData.postalcode %></span></br>
+        <span name="catergory">Study: </span> </br>
+        <span name="info"> <%= PersonData.course %></span></br>
+
+    </div>
+
+    <!-- Review -->
+      <div role="tabpanel" class="tab-pane" id="review">
+          <ul class="list-group" id="contact-list">
+              <% PersonData.comments.forEach(function(comment) { %>
+              <li class="list-group-item" id="<%= comment %>">
+                  <div class="col-xs-12 col-sm-3">
+                      <script>
+                        $.getJSON( "/api/comment/<%= comment %>", function(data) {
+                          document.getElementById("review<%= comment %>").innerHTML = data.review_text;
+                          document.getElementById("place<%=comment %>").innerHTML = data.address;
+                          document.getElementById("place<%= comment %>").setAttribute('href','/Place/?pid='+data.place_id);
+                          if (data.rating == 1){
+                            $('#ratingup<%= comment %>').addClass('active');
+                          }else if(data.rating == 2){
+                            $('#ratingdown<%= comment %>').addClass('active');
+                          }
+                          $.getJSON( "/api/MyStuff/"+data.place_id, function(doc) {
+                                document.getElementById("pic<%= comment %>").setAttribute('src',doc.img);
+                          });
+                        });
+                      </script>
+                      <img src="" alt="place" class="img-responsive .img-rounded" id="pic<%= comment %>" />
+                  </div>
+                  <div class="col-xs-12 col-sm-9">
+
+                      <a href="" class="name" id="place<%= comment %>" style="color:black;">
+                      </a><br/>
+                      <button type="button" name="like" id="ratingup<%= comment %>" class="btn btn-xs" > <i class="fa fa-arrow-up" aria-hidden="true"></i> </button><br/>
+                      <button type="button" name="dislike" id="ratingdown<%= comment %>" class="btn btn-xs"> <i class="fa fa-arrow-down" aria-hidden="true"></i> </button>
+                      <span name="review_text" id ="review<%= comment %>"></span>
+                  </div>
+                  <div class="clearfix"></div>
+              </li>
+
+              <% }); %>
+          </ul>
+      </div>
+
+      <!-- Saved Spots -->
+      <div role="tabpanel" class="tab-pane" id="save">
+          <ul class="list-group" id="contact-list">
+              <% PersonData.myplaces.forEach(function(place) { %>
+              <li class="list-group-item" id="<%= place %>">
+                  <div class="col-xs-12 col-sm-3">
+                      <img id="pic<%=place%>" class="media-object img-rounded img-responsive"  src="" alt="placehold.it/350x250" >
+                  </div>
+                  <div class="col-xs-12 col-sm-9">
+                      <a href="/Place/?pid=<%= place %>" class="name" id="text<%=place%>"style="color:black;">
+                          <script>
+                            $.getJSON( "/api/MyStuff/<%= place %>", function(data) {
+                              document.getElementById("text<%=place%>").innerHTML = data.address;
+                              document.getElementById("pic<%=place%>").setAttribute('src',data.img);
+                            });
+                          </script>
+                      </a><br/>
+                  </div>
+                  <div class="clearfix"></div>
+              </li>
+              <% }); %>
+          </ul>
+      </div>
+
+  </div>
+</div>
+            </div>
+        </div>
+ </div>
+</div>
+</section>
+
+  <%include partials/templates/defaultjs.ejs%>
+    <script type="text/javascript" src="/javascript/OtherProfile.js"></script>
+  </body>
+</html>

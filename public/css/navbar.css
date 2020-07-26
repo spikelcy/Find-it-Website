@@ -1,0 +1,65 @@
+.navbar-header{
+  font-weight: 800;
+  font-style: italic;
+  font-size: 20px;
+}
+
+.navbar-nav{
+  font-weight: 300;
+}
+
+/** nav bar css **/
+
+#links{
+  color:white;
+  font-size: 1.5em;
+}
+
+#navbar_all{
+  background-color: #C09F80;
+  font-family: 'Raleway', sans-serif;
+  padding-top:10px ;
+  padding-bottom:0;
+  border-color: transparent;
+  height: 70px;
+  min-height:70px;
+  font-weight: 700i;
+  z-index:3;
+
+}
+
+#navbar{
+  float:right;
+  text-align: center;
+}
+
+#links-nav-1{
+  text-align: center;
+  text-decoration: none;
+}
+#links-nav-2{
+  float:right;
+  text-align: center;
+  padding-right:40px;
+}
+#foot{
+  background-color: #BEA586;
+}
+#contact{
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  float: right;
+}
+
+.navbar-collapse { background: #C09F80; }
+
+.dropdown{
+  /*does nothing right now
+  but may implement to improve navbar in the future*/
+}
+
+@media (max-width:773px){
+  #links{
+    font-size: 1.4em;
+  }
+}

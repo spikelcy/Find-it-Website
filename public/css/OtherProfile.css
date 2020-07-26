@@ -1,0 +1,155 @@
+html{
+    height:100%;
+}
+@font-face{
+    font-family: 'KaushanScript-Regular';
+    src:url('../fonts/KaushanScript-Regular.otf') format("opentype");
+
+}
+
+
+body{
+    background-image: url("images/background.jpg");
+    background-color: rgba(252, 251, 227, 0.9); /*in case img doesn't show*/
+    background-position: center;
+    background-size: cover;
+    overflow: scroll;
+    background-attachment: fixed;
+}
+
+footer{
+    position: fixed;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+
+.sec1{
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.user-details {position: relative; padding: 0; height: 200px;
+    width: 100%;}
+.user-details .user-image {position: absolute;  z-index: 1;  height: 100px;
+    width: 100%; text-align: center;padding-right:125px;}
+.user-image img { clear: both; margin: auto; position: absolute;width: 125px}
+
+.user-details .user-info-block {width: 100%; position: absolute; top: 55px; background: rgba(252, 251, 227, 0.9);
+    z-index: 0; padding-top: 35px;}
+.user-info-block .user-heading {width: 100%; text-align: center; margin: 10px 0 0;}
+
+/*** PANEL ***/
+
+
+.nav-tabs{
+    border-color: #BEA586;
+    text-align:center;
+    padding-top: 10px
+}
+.nav-tabs li{
+    width:20%;
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+    zoom:1; /* hasLayout ie7 trigger */
+    transform: scale(1);
+}
+.nav-tabs li >a{
+    color:black;
+}
+.nav-tabs li > a:hover, .nav-tabs li.active > a:focus
+,.nav-tabs li.active > a  {
+    background-color: #BEA586;
+    color:white;
+    border-color: transparent;
+}
+
+.tab-pane { padding: 15px ; }
+.tab-content{padding:20px}
+.card {margin-bottom: 30px; }
+
+@media all and (max-width:724px){
+    .nav-tabs > li > a > span {display:none;}
+    .nav-tabs > li > a {padding: 5px 5px;}
+}
+
+/****/
+/** text style **/
+span[name="catergory"] {
+    font-size: 2.5em;
+    font-weight: 700;
+    font-family: 'Amatic SC', cursive;
+}
+
+a{
+    color:black;
+}
+
+
+span[name="info"] {
+    font-size: 1.5em;
+    font-family: Courier, cursive;
+}
+
+
+/** Reviews */
+
+.btn-xs.active{
+    background-color: #8E5B3E;
+
+}
+.c-list {
+    padding: 0px;
+    min-height: 44px;
+
+}
+.list-group-item{
+    background-color: #BEA586;
+    border-color: black;
+    overflow: auto;
+}
+
+
+span[name="catergory"] {
+    font-size: 2.5em;
+    font-weight: 700;
+    font-family: 'Amatic SC', cursive;
+}
+
+
+span[name="review_text"] {
+    font-size: 1.5em;
+    font-family: 'Indie Flower', cursive;
+}
+
+.name {
+    font-size: 2.5em;
+    font-weight: 700;
+    font-family: 'Amatic SC', cursive;
+}
+
+.list-group{
+    overflow: auto;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+}
+
+span[name="review_text"] {
+    font-size: 1.5em;
+    font-family: 'Indie Flower', cursive;
+}
+
+
+/** Follow button **/
+
+#follow.active{
+    background-color: #8E5B3E;
+}

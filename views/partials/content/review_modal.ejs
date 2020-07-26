@@ -1,0 +1,30 @@
+<button id="myBtn" type="button" name="button" class="btn btn-default ">Write Review  _<i class="fa fa-pencil" aria-hidden="true"></i></button>
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <% if (LoggedIn == 1){%>
+            <p>
+                Please write your review and give a rating!
+            <form id="review">
+                <button type="button" name="like" id="uprate" class="btn btn-xs"  onClick=""> <i class="fa fa-arrow-up" aria-hidden="true"></i> </button><br/>
+                <button type="button" name="dislike" id="downrate" class="btn btn-xs"  onClick=""> <i class="fa fa-arrow-down" aria-hidden="true"></i> </button>
+                <input type="hidden" value="<%= aplace.address%>" id="address">
+                <input type="hidden" value="<%= aplace.postalcode%>" id="postalcode">
+                <input type="hidden" value="<%= aplace._id%>" id="place_id">
+                <textarea value="reviewid" rows="2" class="input-large" name="review_text"
+                          id ="textarea" placeholder="Please write a Review"></textarea>
+                <button type="button" name="update" class="btn btn-default" onclick="SubmitCommentData()"> Done! </button>
+            </form>
+            </p>
+            <% }else{%>
+            Please Log In First!
+            <%}%>
+        </div>
+    </div>
+
+</div>

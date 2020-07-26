@@ -1,0 +1,37 @@
+html{
+  height:100%;
+}
+
+
+footer{
+ position:   fixed;
+ bottom:0;
+ left:0;
+ right:0;
+}
+#navbar{
+  float:right;
+  text-align: center;
+}
+#links-nav-1{
+  text-align: center;
+  text-decoration: none;
+}
+#links-nav-2{
+  float:right;
+  text-align: center;
+  padding-right:50px;
+}
+#foot{
+    background-color: red;
+}
+#contact{
+  color:white;
+  float: right;
+}
+
+.navbar-collapse { background:#674941; }
+
+@media(min-width: 766px){
+    .navbar > .container { max-width: 100%; padding: 0; }
+}

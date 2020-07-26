@@ -1,0 +1,18 @@
+<% layout( 'layout' ) -%>
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<h1><%= title %></h1>
+<form method="get" action="/search" >
+    <input type="text" name="searchcontent" placeholder="username">
+    <button type="submit">Search</button>
+</form>
+    // use a loop to show all places
+    <% todos.forEach( function( Place ){ %>
+    <p><%= Place.content %>
+    <a href="/api/save/<%=Place._id %>" title = "save to database">Save</a>
+    </p>
+<% }); %>
+</body>
+</html>

@@ -1,0 +1,24 @@
+places
+
+{
+  "__v": 0,
+  "address": "88 something road",
+  "postalcode": 2379,
+  "_id": "58f2e33d31f1671550af1631",
+  "tags": {
+    "name": "Computer Science",
+    "count": 1
+  }
+}
+
+comment
+
+{
+	"address" : "88 something road",
+	"postalcode" : "2379",
+	"rating":4,
+	"place_id":"58f2e32f31f1671550af1630",
+	"person_id":"58f16730712142142cba44c2",
+	"review_text":"I really like it"
+
+}

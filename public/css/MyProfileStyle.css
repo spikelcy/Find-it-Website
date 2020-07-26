@@ -1,0 +1,232 @@
+html{
+    height: 100%;
+}
+@font-face{
+    font-family: 'KaushanScript-Regular';
+    src:url('../fonts/KaushanScript-Regular.otf') format("opentype");
+
+}
+
+/** modal css **/
+
+.modal-body{
+    background-color: #FCFBE3;
+    font-family: Courier;
+
+}
+.modal-header{
+    background-color: #8E5B3E;
+    font-family: Courier;
+    font-weight: bold;
+    color:white;
+}
+
+.modal-footer{
+    background-color: #FCFBE3;
+
+}
+.close {
+    color: #A2825C;
+    color:white;
+}
+
+/****/
+
+
+body{
+    background-image: url("images/background.jpg");
+    background-color: rgba(252, 251, 227, 0.9); /*in case the image doesn't display*/
+    background-position: center;
+    background-size: cover;
+    overflow: scroll;
+    background-attachment: fixed;
+    font-family: 'Raleway', sans-serif;
+
+}
+
+/**footer{
+  position: fixed;
+  bottom:0;
+  left:0;
+  right:0;
+}
+**/
+.sec1{
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+input{
+    border-color: transparent;
+}
+
+.user-details {position: relative; padding: 0; height: 200px;
+    width: 100%;}
+.user-details .user-image {position: absolute;  z-index: 1;  height: 100px;
+    width: 100%; text-align: center;padding-right:125px;}
+.user-image img { clear: both; margin: auto; position: absolute; width:125px}
+
+.user-details .user-info-block {width: 100%; position: absolute; top: 55px; background: rgba(252, 251, 227, 0.9); z-index: 0;
+    padding-top: 35px;}
+.user-info-block .user-heading {width: 100%; text-align: center; margin: 10px 0 0;}
+
+/*** PANEL ***/
+
+
+.nav-tabs{
+    border-color: #BEA586;
+    text-align:center;
+    padding-top: 10px
+}
+.nav-tabs li{
+    width:20%;
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+    zoom:1; /* hasLayout ie7 trigger */
+    transform: scale(1);
+}
+.nav-tabs li >a{
+    color:black;
+}
+.nav-tabs li > a:hover, .nav-tabs li.active > a:focus
+,.nav-tabs li.active > a  {
+    background-color: #BEA586; /*active tabs*/
+    color:white;
+    border-color: transparent;
+}
+.tab-pane { padding: 15px ;}
+.tab-content{padding:20px;}
+.card { margin-bottom: 30px; }
+form{
+    float:left;
+}
+
+/* follows part */
+
+
+.c-search > .form-control {
+    border-radius: 0px;
+    border-width: 0px;
+    border-bottom-width: 1px;
+    font-size: 1.3em;
+    padding: 12px 12px;
+    height: 44px;
+    outline: none !important;
+}
+.c-search > .form-control:focus {
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none;
+}
+.c-search > .input-group-btn .btn {
+    border-radius: 0px;
+    border-width: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    height: 44px;
+}
+
+
+.c-list {
+    padding: 0px;
+    min-height: 44px;
+
+}
+.title {
+    display: inline-block;
+    font-size: 1.7em;
+    font-weight: bold;
+    padding: 5px 15px;
+}
+ul.c-controls {
+    list-style: none;
+    margin: 0px;
+    min-height: 44px;
+}
+
+ul.c-controls li {
+    margin-top: 8px;
+    float: left;
+}
+
+ul.c-controls li a {
+    font-size: 1.7em;
+    padding: 11px 10px 6px;
+}
+ul.c-controls li a i {
+    min-width: 24px;
+    text-align: center;
+}
+
+ul.c-controls li a:hover {
+    background-color: rgba(51, 51, 51, 0.2);
+}
+
+.c-toggle {
+    font-size: 1.7em;
+}
+
+.name {
+    font-size: 1.7em;
+    font-weight: 700;
+}
+
+.c-info {
+    padding: 5px 10px;
+    font-size: 1.25em;
+}
+
+.list-group-item{
+    background-color: #BEA586;
+    color:white;
+    border-color: black;
+    overflow: auto;
+}
+
+/*----*/
+
+/** Reviews */
+
+.btn-xs.active{
+    background-color: #8E5B3E;
+
+}
+
+span[name="catergory"] {
+    font-size: 2.5em;
+    font-weight: 700;
+    font-family: 'Amatic SC', cursive;
+}
+
+
+textarea[name="review_text"] {
+    font-size: 1.5em;
+    color:black;
+    font-family: 'Indie Flower', cursive;
+}
+
+.logout-button{
+    text-align: center;
+    text-decoration: none;
+    background-color: #BEA586;
+    color: black;
+}
+
+.logout-button:focus,
+.logout-button:hover{
+    color: #FCFBE3;
+    background-color: #A2825C;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.href-label{
+    width: 250px;
+}

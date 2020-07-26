@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <%include partials/templates/head.ejs%>
+    <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
+    <link rel="stylesheet" href="/css/Place.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Indie+Flower" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <title><%= aplace.name%></title>
+
+</head>
+<body>
+<%if (LoggedIn == 0){%>
+<%include partials/templates/navbar.ejs%>
+<%}else{%>
+<%include partials/templates/navbar_profile.ejs%>
+<%}%>
+<section id="sec1">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-md-4 user-details">
+                <div class="user-image">
+                    <img src="<%= aplace.img%>" class="img-circle">
+                </div>
+                <div class="user-info-block">
+                    <div class="user-heading">
+                        <h3><%= aplace.name%><br/><%= aplace.address%></h3>
+                        <% if(LoggedIn == 1){%>
+                        <% if(Saved == 0){%>
+                        <button type="button" name="button" id="save" class="btn btn-default btn-lg" value="<%= aplace._id%>">
+                            <i class="fa fa-user" aria-hidden="true"></i> Save</button>
+                        <%}else{%>
+                        <button type="button" name="button" id="save" class="btn btn-default btn-lg active" value="<%= aplace._id%>">
+                            <i class="fa fa-user" aria-hidden="true"></i> Saved</button>
+                        <%}%>
+                        <%}else{%>
+                        <button type="button" name="button" class="btn btn-default btn-lg" id="LogInFirst">
+                            <i class="fa fa-user" aria-hidden="true"></i> Save</button>
+                        <%}%>
+                    </div>
+                    <!-- Nav tabs -->
+                    <div class="card">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active" ><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tags"></i>  <span>Profile</span></a></li>
+                            <li role="presentation" ><a href="#mappart"  aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tags"></i>  <span>Map</span></a></li>
+                            <li role="presentation"><a href="#reviews" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list"></i>  <span>Reviews</span></a></li>
+
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <!-- Profile tab -->
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <span name="catergory">Address:</span></br>
+                                <span name="info" id="paddress"> </span></br></br>
+                                <span name="catergory">Name: </span> </br>
+                                <span name="info" id="pname"><%= aplace.name%> </span></br></br>
+                                <span name="catergory">Is It Open:</span></br>
+                                <span name="info" id="popen"> No Timetable found</span></br></br>
+                                <span name="catergory">Categories:</span>
+                                </br><span name="info" id="pcat"></span>
+                                </br><a href="" id="googlelink" class = "btn btn-default"><i class="fa fa-question-circle find-out-more" aria-hidden="true"></i> Find out more!</a>
+                                <button id="report" value="<%= aplace._id%>" onclick="SendReport(this.value)" class = "btn btn-default error-report">
+                                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Report an error!</button>
+                                <h5 style="">Let others know if there is inaccurate info</h5>
+                            </div>
+
+                            <!-- Map tab -->
+                            <div role="tabpanel" class="tab-pane" id="mappart" style="width:500px;height:500px;display:none;">
+                                <div id="map" style="width: 500px; height: 500px"></div>
+                            </div>
+
+                            <!-- google map script & calls info from google places    -->
+                            <script>
+                              // display map div if in map tab
+                              $('a[href="#mappart"]').click(function(){
+                                console.log("click");
+                                document.getElementById('mappart').style.display="block";
+                                initMap();
+                              });
+                              // close map display if on another tab
+                              $('a[href="#home"]').click(function(){
+                                document.getElementById('mappart').style.display="none";
+                              });
+                              $('a[href="#reviews"]').click(function(){
+                                document.getElementById('mappart').style.display="none";
+                              });
+                              // show all tags of place
+                              <% aplace.tags.forEach(function(tag) { %>
+                              document.getElementById('pcat').innerHTML += " <%= tag.name %><br>";
+                              <%})%>
+                              // starts map stuff
+                              function initMap() {
+                                var auLatLang = {lat: -37.8207879, lng: 144.9561307};
+                                map = new google.maps.Map(document.getElementById('map'), {
+                                  center: auLatLang,
+                                  zoom: 15
+                                });
+                                $(document).ready(function() {
+                                  $(window).resize(function() {
+                                    google.maps.event.trigger(map, 'resize');
+                                  });
+                                  google.maps.event.trigger(map, 'resize');
+                                });
+                                //the little window you see when you click a marker
+                                var infowindow = new google.maps.InfoWindow();
+                                // to check google if place is a real place
+                                var service = new google.maps.places.PlacesService(map);
+                                service.getDetails({
+                                  placeId: '<%= aplace.google_id%>'
+                                }, function(place, status) {
+                                  if (status === google.maps.places.PlacesServiceStatus.OK) {
+                                    var marker = new google.maps.Marker({
+                                      map: map,
+                                      position: place.geometry.location
+                                    });
+                                    map.setCenter(marker.getPosition());
+                                    google.maps.event.addListener(marker, 'click', function() {
+                                      map.setCenter(marker.getPosition());
+                                      infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                                        place.formatted_address + '</div>');
+                                      infowindow.open(map, this);
+                                    });
+                                    // map.resize();
+                                    google.maps.event.trigger(map,'resize');
+                                    map.setCenter(marker.getPosition());
+                                    //not super relevant my parts
+                                    document.getElementById("paddress").innerHTML = place.formatted_address;
+                                    document.getElementById("googlelink").setAttribute('href',place.url);
+                                    if(typeof place.opening_hours.open_now == 'undefined'){
+                                      document.getElementById("popen").innerHTML = 'No Timetable available';
+                                    }else{
+                                      if(place.opening_hours.open_now == true){
+                                        document.getElementById("popen").innerHTML = 'Yes';
+                                      }else{
+                                        document.getElementById("popen").innerHTML = 'No';
+                                      }
+                                    }
+                                  }
+                                });
+                              }
+                            </script>
+
+                            <!-- Review -->
+                            <div role="tabpanel" class="tab-pane" id="reviews">
+                                <!-- show review modal -->
+                                <%include partials/content/review_modal.ejs%>
+                                <br/><br/>
+
+                                <ul class="list-group" id="contact-list">
+                                    <% aplace.comments.forEach(function(comment) { %>
+                                    <li class="list-group-item" id="<%= comment %>">
+                                        <div class="col-xs-12 col-sm-3">
+                                            <script>
+                                              $.getJSON( "/api/comment/<%= comment %>", function(data) {
+                                                document.getElementById("review<%= comment %>").innerHTML = data.review_text;
+                                                if (data.rating == 1){
+                                                  $('#ratingup<%= comment %>').addClass('active');
+                                                }else if(data.rating == 2){
+                                                  $('#ratingdown<%= comment %>').addClass('active');
+                                                }
+                                                $.getJSON( "/api/person/" + data.person_id, function(person) {
+                                                  document.getElementById("person<%= comment %>").innerHTML = person.Username;
+                                                  document.getElementById("person<%= comment %>").setAttribute('href','/OtherProfile?pid='+person._id);
+                                                  document.getElementById('pic<%= comment %>').setAttribute('src',person.img);
+                                                });
+                                              });
+                                            </script>
+                                            <img src="" alt="place" class="img-responsive .img-rounded" id="pic<%= comment %>" />
+                                        </div>
+                                        <div class="col-xs-12 col-sm-9">
+                                            <a href="" class="name" id="person<%= comment %>">
+                                            </a><br/>
+                                            <button type="button" name="like" id="ratingup<%= comment %>" class="btn btn-xs" > <i class="fa fa-arrow-up" aria-hidden="true"></i> </button><br/>
+                                            <button type="button" name="dislike" id="ratingdown<%= comment %>" class="btn btn-xs"> <i class="fa fa-arrow-down" aria-hidden="true"></i> </button>
+                                            <span name="review_text" id ="review<%= comment %>"></span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                    <% }); %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<%include partials/templates/defaultjs.ejs%>
+<script src="ENTER NEW GOOGLE KEY IF NEEDED"
+        async defer></script>
+<script type="text/javascript" src="/javascript/Place.js"></script>
+</body>
+</html>

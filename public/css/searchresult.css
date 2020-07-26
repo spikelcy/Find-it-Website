@@ -1,0 +1,355 @@
+/*update on 5/2/2017: add a new font: nut it is okay not to add it*/
+@import url('https://fonts.googleapis.com/css?family=Baloo');
+
+html{
+    height:100%;
+
+}
+@font-face{
+    font-family: 'KaushanScript-Regular';
+    src:url('../fonts/KaushanScript-Regular.otf') format("opentype");
+
+}
+
+body{
+    /*update on 5/2/2017: change the img background same as other pages lol*/
+    background-image: url("https://source.unsplash.com/Mxvew_CaxJI");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+
+}
+
+
+footer{
+
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+.view {
+    position:relative;
+    overflow:hidden;
+    margin-top: 10px;
+}
+
+.view p {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.caption {
+    position:absolute;
+    top:0;
+    right:0;
+    background: rgba(98, 98, 98, 0.44);
+    width:100%;
+    height:100%;
+    padding:2%;
+    display: none;
+    text-align:center;
+    color:#fff !important;
+    z-index:2;
+}
+
+.caption h3 {
+    padding-top: 20px;
+}
+
+.caption a {
+    padding: 0 20px;
+    color: #fff;
+}
+
+.propertyType {
+    color: #ffffff;
+    display: inline-block;
+    height: 20px;
+    padding: 0 10px;
+    position: absolute;
+    text-align: center;
+    top: 0px;
+    width: 100px;
+}
+.info {
+    display: block;
+    padding: 10px;
+    background: #eee;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.info p, .stats p {
+    margin-bottom: 0;
+}
+
+#resultimg {
+    height:100%;
+    width:100%
+}
+
+#savebutton,#showcomment {
+    background-color: Transparent;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.stats {
+    display: block;
+    padding: 10px;
+    color: white;
+}
+share-links {
+    border: 1px solid #eee;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.square, .btn {
+    border-radius: 0px!important;
+}
+
+.fa.pull-right {
+    margin-top: .3em;
+}
+
+.wb {
+    display: inline-block;
+    color: #675c53;
+    font-family: "wiseberry-icons" !important;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    top: -35px;
+}
+
+.wb.pull-right {
+    margin-left: .3em;
+    margin-right: .3em;
+}
+
+#comment{
+    text-align: center;
+}
+
+.thumbnail {
+    padding:0px;
+}
+.panel {
+    position:relative;
+}
+.panel>.panel-heading:after,.panel>.panel-heading:before{
+    position:absolute;
+    top:11px;left:-16px;
+    right:100%;
+    width:0;
+    height:0;
+    display:block;
+    content:" ";
+    border-color:transparent;
+    border-style:solid solid outset;
+    pointer-events:none;
+}
+.panel>.panel-heading:after{
+    border-width:7px;
+    border-right-color:#f7f7f7;
+    margin-top:1px;
+    margin-left:2px;
+}
+.panel>.panel-heading:before{
+    border-right-color:#ddd;
+    border-width:8px;
+}
+
+/** nav bar css **/
+
+#links{
+    color:white;
+    font-size: 1.5em;
+}
+
+#navbar_all{
+    background-color: #C09F80;
+    font-family: 'Raleway', sans-serif;
+    padding-top:10px ;
+    padding-bottom:0;
+    border-color: transparent;
+    height: 70px;
+    min-height:70px;
+    font-weight: 700i;
+
+}
+
+#navbar{
+    float:right;
+    text-align: center;
+}
+
+#links-nav-1{
+    text-align: center;
+    text-decoration: none;
+}
+#links-nav-2{
+    float:right;
+    text-align: center;
+    padding-right:40px;
+}
+#foot{
+    background-color: #BEA586;
+}
+#contact{
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    float: right;
+}
+
+.navbar-collapse { background: #C09F80; }
+
+@media(max-width:768px){
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        background: #C09F80;
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+        z-index:3;
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+        z-index:3;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+    .navbar > .container { max-width: 100%; padding: 0; }
+}
+
+
+#resultcount{
+    color: white;
+    font-family: 'Baloo', cursive;
+    text-align: center;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+}
+
+.thumbnail{
+    max-width:60px;
+    height:auto;
+}
+
+.view{
+    background-color: rgba(255, 255, 255, 1)
+}
+
+#resultimg{
+    width: 100%;
+}
+
+
+/** links for user **/
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 5; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #FCFBE3;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+.modal-body{
+
+    background-color: #FCFBE3;
+    font-family: Courier;
+
+}
+
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/** modal css **/
+
+.modal-body{
+    background-color: #FCFBE3;
+    font-family: Courier;
+
+}
+.modal-header{
+    background-color: #FCFBE3;
+    font-family: Courier;
+    font-weight: bold;
+    color:white;
+}
+
+.modal-footer{
+    background-color: #FCFBE3;
+
+}
+.close {
+    color: #A2825C;
+    color:white;
+}
+
+/****/

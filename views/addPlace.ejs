@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<!-- Bootstrap and others -->
+    <%include partials/templates/head.ejs%>
+	<link rel="stylesheet" href="css/signUpStyle.css">
+	<link rel="stylesheet" href="css/loginPopUp.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+	<link class="jsbin" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+
+
+
+	<title>Add Place</title>
+
+</head>
+<body>
+<%  include partials/templates/navbar_profile.ejs%>
+<!--Sign Up form-->
+<section>
+	<h1>Add Place</h1>
+	<form class = "addPlace" action="/api/place/create" method="POST" onsubmit="return validatePlace([<%=NameData%>],[<%=AddressData%>])" enctype="multipart/form-data">
+		<p>
+		<table>
+			<input type="hidden" name="google_id" id="id" value=""/>
+			<tr><td class="td-center"><input type="text" id="placename" class="true" onchange="return checkInput(this)" name="name" placeholder="Insert place name here*" required /></td></tr>
+			<tr><td class="td-center"><input type="file" name="file" id="file" class="inputFile" size="50"  accept="image/*" required onchange = "readURL(this);"/>
+					<label for="file" class="fileLabel">Add a picture!</label></td></tr>
+			<tr><td class="td-center"><img class="img-circle" id="display-image" src="css/images/edited-logo-v3.jpg" width="220" height="200" alt = "Selected Image" /></td></tr>
+			<tr><td class="td-center"><input type="text" onkeypress="return checkInputAddress(this)" name="address" id="autocomplete" onFocus='geolocate()' placeholder="Enter address here*" required /></td></tr>
+			<tr>
+				<td class="td-center"><select id="interest" name="tags" list="interests" placeholder="Tag 1" />
+					<datalist id="interests">
+						<!-- enter options from database -->
+						<option value="">Select Tag</option>
+						<option value="Food">Food</option>
+						<option value="School">School</option>
+						<option value="Entertainment">Entertainment</option>
+						<option value="Groceries">Groceries</option>
+					</datalist></td></tr>
+			<tr>
+				<td class="td-center"><select id="interest" name = "tags" list="interests" placeholder="Tag 2" />
+					<option value="">Select Tag</option>
+					<option value="Food">Food</option>
+					<option value="School">School</option>
+					<option value="Entertainment">Entertainment</option>
+					<option value="Groceries">Groceries</option>
+					</select></td></tr>
+			<tr>
+				<td class="td-center"><select id="interest" name="tags" list="interests" placeholder="Tag 3" />
+					<option value="">Select Tag</option>
+					<option value="Food">Food</option>
+					<option value="School">School</option>
+					<option value="Entertainment">Entertainment</option>
+					<option value="Groceries">Groceries</option>
+					</select></td></tr>
+			<tr><td></td></tr>
+			<tr><td class="td-center" ><input type="submit" value="Save it!"></td></tr>
+			<tr><td></td></tr>
+			<tr><td>* marks required fields.</td></tr>
+
+		</table>
+		</p>
+	</form>
+
+</section>
+
+
+<% include partials/templates/defaultjs.ejs %>
+
+<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<script src="javascript/addPlace.js"></script>
+<script src="javascript/form.js"></script>
+<script src="ENTER NEW KEY FOR USE"
+		async defer></script>
+
+
+</body>
+</html>

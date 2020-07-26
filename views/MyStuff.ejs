@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include partials/templates/head.ejs%>
+	<link rel="stylesheet" href="/css/MyStuff.css">
+
+	<!-- Include the core AngularJS library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angularjs/1.4.0/angular.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<!-- script references -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+
+
+<body>
+<%include partials/templates/navbar_profile.ejs%>
+<br> <br> <br> <br> <br> <br>
+
+<div class="row">
+	<div class="col-md-5 container" >
+		<div class="well">
+			<h1 class="text-center" id="myPlaces"> <i class="glyphicon glyphicon-heart-empty"></i> Saved Places</h1>
+			<ul class="list-group">
+			<% PersonData.myplaces.forEach(function(myplace) { %>
+			<li class="list-item" id="<%=myplace%>">
+				<a href="#"  value="<%=myplace%>" class="list-group-item" id="place<%=myplace%>">
+					<script>
+                      $.getJSON( "/api/MyStuff/<%= myplace %>", function(data) {
+                        document.getElementById("text<%=myplace%>").innerHTML = data.address;
+                        document.getElementById("pic<%=myplace%>").src = data.img;
+                        document.getElementById("likes<%=myplace%>").innerHTML = "Likes: "+data.likes;
+                      });
+					</script>
+						<div class="media col-md-3">
+							<figure class="pull-left">
+								<img id="pic<%=myplace%>" class="media-object img-rounded img-responsive"  src="" alt="My Place!" >
+							</figure>
+						</div>
+						<div class="col-md-5">
+							<h4 class="list-group-item-heading" id="text<%=myplace%>">
+							</h4>
+						</div>
+						<div class="col-md-3 text-center">
+							<p id="likes<%=myplace%>"></p>
+							<button type="button" name="delete" class="btn btn-small" value="<%=myplace%>" > delete </button>
+							<script>
+                              $('button[name="delete"]').on('click', function(e) {
+                                document.getElementById($(this).closest('li').attr('id')).remove();
+                                var id = $(this).attr('value');
+                                $.ajax({
+                                  url: "/api/MyStuff/remove/" + id ,
+                                  type: 'PUT',
+                                  success: function(data) {
+
+                                    window.location.href = window.location.href;
+                                    if(data.status == 200){ // if true (1)
+                                    }
+                                  }
+                                });
+
+                              })
+							</script>
+						</div>
+					</a>
+			</li>
+            <% }); %>
+			</ul>
+		</div>
+	</div>
+
+	<!-- __________________MAP______________________ -->
+	<div class="col-md-7">
+
+		<div id="map" style="width: 700px; height: 600px; margin-top:1em;"></div>
+		<script>
+          var map;
+
+          function initMap() {
+            var auLatLang = {lat: -37.8207879, lng: 144.9561307};
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: auLatLang,
+              zoom: 15
+            });
+           var geocoder = new google.maps.Geocoder();
+            <% PersonData.myplaces.forEach(function(myplace) { %>
+          $.getJSON( "/api/MyStuff/<%= myplace %>", function(data) {
+			geocodeAddress(geocoder, map, data.address);
+            });
+		  <% }); %>
+
+			// zoom in on clicked address
+            $('.list-group-item').click(function() {
+              var id = $(this).attr('value');
+              var address = document.getElementById("text"+id).innerHTML;
+              geocoder.geocode({'address': address}, function (results, status) {
+                if (status === 'OK') {
+                  map.setCenter(results[0].geometry.location);
+
+                }
+              });
+
+            });
+          function geocodeAddress(geocoder, resultsMap,address) {
+            geocoder.geocode({'address': address}, function(results, status) {
+              if (status === 'OK') {
+                var marker = new google.maps.Marker({
+                  map: resultsMap,
+                  animation: google.maps.Animation.DROP,
+                  position: results[0].geometry.location
+                });
+              } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+              }
+            });
+          }
+		  }
+		</script>
+		<script src="ENTER NEW GOOGLE KEY HERE" async defer></script>
+
+
+	</div>
+
+
+
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins)
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+<script type="text/javascript" src="/javascript/MyStuff.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+<%include partials/templates/defaultjs.ejs%>
+</body>
+</html>
