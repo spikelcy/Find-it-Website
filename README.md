@@ -1,7 +1,7 @@
 # Find-It
 Mirrored Repository for School Website Project
 
-Uploaded as a presentable record. Removed old security keys. 
+Uploaded as a presentable record, website not online. Removed old security keys. 
 
 Group Name: The kohi inu coders
 
