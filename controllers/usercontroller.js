@@ -7,9 +7,9 @@ var cloudinary = require('cloudinary');
 
 // security info for image upload
 cloudinary.config({
-  cloud_name: 'hkily5yb6',
-  api_key: '829662555852782',
-  api_secret: '0D7Fn3EqcANVIkMO4Jcc2xmNoTA'
+  cloud_name: 'enter new name',
+  api_key: 'enter new key',
+  api_secret: 'enter new secret'
 });
 
 
